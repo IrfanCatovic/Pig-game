@@ -17,7 +17,7 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
-const scores = [0, 0]; //2 score koji smo vec sacuvali
+let scores = [0, 0]; //2 score koji smo vec sacuvali
 let currentScore = 0; //score koji cemo da cuvamo
 let activePlayer = 0; //koji od 2 igraca igra
 let playing = true; //da li smo dobili 100
@@ -29,6 +29,27 @@ function switchPlayer() {
   player0El.classList.toggle('player--active');
   player1El.classList.toggle('player--active');
 }
+
+init();
+
+function init() {
+  scores = [0, 0];
+  currentScore = 0; //score koji cemo da cuvamo
+  activePlayer = 0; //koji od 2 igraca igra
+  playing = true;
+
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+}
+
+btnNew.addEventListener('click', init);
 
 btnHold.addEventListener('click', function () {
   if (playing) {
