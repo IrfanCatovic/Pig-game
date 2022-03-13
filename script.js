@@ -1,39 +1,45 @@
 'use strict';
 
 // SELECTING ELEMENTS
-const player0El = document.querySelector('.player--0');
-const player1El = document.querySelector('.player--1');
-const score0El = document.querySelector('#score--0');
-const score1El = document.getElementById('score--1');
-const current0El = document.getElementById('current--0');
-const current1El = document.getElementById('current--1');
-const diceEl = document.querySelector('.dice');
-const btnNew = document.querySelector('.btn--new');
-const btnRoll = document.querySelector('.btn--roll');
-const btnHold = document.querySelector('.btn--hold');
+const player0El = document.querySelector('.player--0'); //selecting player in html code so we can change players turn, manipulate when player wins
+//and when starting a new game
+const player1El = document.querySelector('.player--1'); //selecting player in html code
+const score0El = document.querySelector('#score--0'); //main score that we want to save
+const score1El = document.getElementById('score--1'); //main score that we want to save
+const current0El = document.getElementById('current--0'); //current score we see while we play
+const current1El = document.getElementById('current--1'); //current score we see while we play
+const diceEl = document.querySelector('.dice'); //to set visibilty of dice while we play
+const btnNew = document.querySelector('.btn--new'); //connect button new with html code to start new game
+const btnRoll = document.querySelector('.btn--roll'); //connect button roll for rolling the dice
+const btnHold = document.querySelector('.btn--hold'); //connect button hold for holding current score and save it for main score
+
+//
 
 //STARTING CONDITIONS
-score0El.textContent = 0;
+score0El.textContent = 0; //change main score to 0 at start of the match
 score1El.textContent = 0;
-diceEl.classList.add('hidden');
+diceEl.classList.add('hidden'); //on start we add class hidden so we dont see dice at start
 
 let scores = [0, 0]; //2 score koji smo vec sacuvali
+
 let currentScore = 0; //score koji cemo da cuvamo
+let currentHighScore = 0;
 let activePlayer = 0; //koji od 2 igraca igra
 let playing = true; //da li smo dobili 100
 
+//funkcija za menjanje igraca u toku igre
 function switchPlayer() {
   document.getElementById(`current--${activePlayer}`).textContent = 0; //Pre promene igraca vracamo trenutni score na 0
   activePlayer = activePlayer === 0 ? 1 : 0; //change player, we ask if it is player 0 we want new active player 1, if not we want new player to be 0
-  currentScore = 0;
-  player0El.classList.toggle('player--active');
+  currentScore = 0; //
+  player0El.classList.toggle('player--active'); //mchange active player with toggle
   player1El.classList.toggle('player--active');
 }
 
 init();
 
 function init() {
-  scores = [0, 0];
+  scores = [0, 0]; //
   currentScore = 0; //score koji cemo da cuvamo
   activePlayer = 0; //koji od 2 igraca igra
   playing = true;
